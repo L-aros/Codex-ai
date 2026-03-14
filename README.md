@@ -1,9 +1,6 @@
 # Codex-AI
 
-一个适用于 Linux 服务器的 `CLIProxyAPI Plus + Docker + Nginx + Let's Encrypt` 一键部署脚本与中文配置说明项目。
-
----
-
+一个适用于 Linux 服务器的 `CLIProxyAPI Plus + Docker + Nginx + Let's Encrypt` 一键部署脚本与中文配置说明项目
 本项目的目标是帮助用户快速在自己的服务器上部署一个带有以下服务的 Codex-AI 服务环境
 
 - Docker 容器运行
