@@ -9,10 +9,6 @@
 - 中文注释配置文件
 - 可自定义域名与端口
 
-
-
----
-
 ## 功能特性
 
 - 一键部署 `CLIProxyAPI-Plus`
@@ -25,7 +21,6 @@
 - 支持自定义应用端口与对外端口
 - 提供中文注释版配置示例文件
 
----
 
 ## 目录说明
 
@@ -48,8 +43,6 @@
 └── certs/
 ```
 
----
-
 ## 环境要求
 
 使用本项目之前，请确认：
@@ -59,8 +52,6 @@
 * 服务器已开放 80、443、22 端口
 * 已安装 Docker
 * 具备 root 权限
-
----
 
 ## Docker 说明
 
@@ -109,8 +100,6 @@ PUBLIC_HTTPS_PORT=443 \
 bash build.sh
 ```
 
----
-
 ## 可配置环境变量
 
 | 变量名                 | 说明                 | 默认值                                  |
@@ -130,7 +119,6 @@ bash build.sh
 | `PUBLIC_HTTP_PORT`  | Nginx 外部 HTTP 端口   | `80`                                 |
 | `PUBLIC_HTTPS_PORT` | Nginx 外部 HTTPS 端口  | `443`                                |
 
----
 
 ## 端口说明
 
@@ -147,7 +135,6 @@ Nginx 对外开放的 HTTP 端口。
 
 Nginx 对外开放的 HTTPS 端口。
 
----
 
 ## 证书说明
 
@@ -170,7 +157,6 @@ Nginx 对外开放的 HTTPS 端口。
 
 如果把对外 HTTP 端口改成非 80，证书自动签发与续期可能失败。
 
----
 
 ## 测试接口
 
@@ -198,7 +184,6 @@ curl -sS https://api.example.com/v1/chat/completions \
   }'
 ```
 
----
 
 ## 自动续期
 
@@ -210,7 +195,7 @@ curl -sS https://api.example.com/v1/chat/completions \
 
 用于定时执行证书续期，并在续期成功后自动重载 Nginx。
 
----
+
 
 ## 配置文件说明
 
@@ -222,7 +207,7 @@ config.zh-CN.example.yaml
 
 这是基于官方示例配置文件整理的中文注释版本，方便理解各字段含义。
 
----
+
 
 ## 常见问题
 
@@ -252,7 +237,7 @@ config.zh-CN.example.yaml
 
 说明服务正常，但请求未携带 Bearer Token。
 
----
+
 
 ## 项目声明
 
@@ -263,3 +248,6 @@ config.zh-CN.example.yaml
 5. 本项目为开源辅助部署项目，不对因使用本项目造成的任何直接或间接损失承担责任。
 6. 若本项目中涉及的第三方名称、镜像、工具、服务或配置示例存在版权、商标或协议要求，请使用者自行遵守对应条款。
 
+
+## License
+本项目采用 MIT 许可证授权 - 详情请参阅 (LICENSE)[LICENSE] 文件。
