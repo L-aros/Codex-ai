@@ -1,0 +1,262 @@
+# UTF-8 编码
+# ==========================================
+# CLIProxyAPI Plus 配置文件（中文注释版）
+# 基于官方 config.example.yaml 整理
+# 适合作为公开仓库示例文件
+# ==========================================
+
+# 服务器监听地址
+# ''              = 监听所有网卡（IPv4 + IPv6）
+# '127.0.0.1'     = 仅本机访问
+# 'localhost'     = 仅本机访问
+host: '127.0.0.1'
+
+# 应用监听端口
+# 通常由 Nginx / Caddy / Traefik 反向代理到这里
+port: 8317
+
+# TLS / HTTPS 配置
+# 如果前面已有 Nginx 做 HTTPS，建议这里关闭
+tls:
+  enable: false
+  cert: ''
+  key: ''
+
+# 远程管理接口配置
+remote-management:
+  # 是否允许远程访问管理接口
+  # false = 仅本机 localhost 可访问
+  allow-remote: false
+
+  # 管理密码
+  # 这里可以直接填写明文，程序启动时会自动转为哈希
+  # 留空则禁用 /v0/management 相关接口
+  secret-key: ''
+
+  # 是否禁用内置控制面板资源下载与路由
+  disable-control-panel: false
+
+  # 管理控制面板 GitHub 仓库地址
+  panel-github-repository: 'https://github.com/router-for-me/Cli-Proxy-API-Management-Center'
+
+# 认证目录
+# 建议与 Docker 挂载目录一致
+auth-dir: '/root/.cli-proxy-api'
+
+# 对外调用本服务时使用的 API Key
+api-keys:
+  - 'sk-your-api-key'
+
+# 是否启用调试日志
+debug: false
+
+# pprof 调试接口
+# 建议只绑定到本机
+pprof:
+  enable: false
+  addr: '127.0.0.1:8136'
+
+# 商业模式
+# true 时会关闭部分高开销中间件，以减少高并发下的内存使用
+commercial-mode: false
+
+# OAuth 登录是否使用隐身/无痕窗口
+incognito-browser: true
+
+# 是否将日志写入旋转文件
+logging-to-file: true
+
+# 日志文件总大小限制（MB）
+# 0 表示不限制
+logs-max-total-size-mb: 100
+
+# 错误日志最多保留文件数
+error-logs-max-files: 10
+
+# 是否启用内存中的用量统计
+usage-statistics-enabled: true
+
+# 全局代理地址
+# 支持 socks5 / http / https
+# 例如：
+# proxy-url: 'socks5://127.0.0.1:7890'
+proxy-url: ''
+
+# 是否仅使用无前缀模型请求凭证
+force-model-prefix: false
+
+# 是否将筛选后的上游响应头透传给下游客户端
+passthrough-headers: false
+
+# 请求失败时的重试次数
+request-retry: 3
+
+# 单次失败请求最多尝试多少个不同凭证
+# 0 = 尝试所有可用凭证
+max-retry-credentials: 0
+
+# 请求重试前允许等待冷却凭证的最大秒数
+max-retry-interval: 30
+
+# 配额超限时的行为
+quota-exceeded:
+  # 超限时自动切换到其他项目
+  switch-project: true
+
+  # 超限时自动切到预览模型
+  switch-preview-model: true
+
+# 多个凭证匹配时的路由策略
+routing:
+  # round-robin = 轮询
+  # fill-first  = 优先填满前一个
+  strategy: 'round-robin'
+
+# WebSocket API (/v1/ws) 是否启用鉴权
+ws-auth: false
+
+# 非流式响应保活空行间隔（秒）
+# >0 时会周期性发送空行，避免中间层空闲超时
+nonstream-keepalive-interval: 0
+
+# 流式行为（按需启用）
+# streaming:
+#   keepalive-seconds: 15
+#   bootstrap-retries: 1
+
+
+# =========================================================
+# Gemini API Key 配置示例
+# =========================================================
+# gemini-api-key:
+#   - api-key: "AIzaSy..."
+#     prefix: "test"
+#     base-url: "https://generativelanguage.googleapis.com"
+#     headers:
+#       X-Custom-Header: "custom-value"
+#     proxy-url: "socks5://127.0.0.1:7890"
+#     models:
+#       - name: "gemini-2.5-flash"
+#         alias: "gemini-flash"
+#     excluded-models:
+#       - "gemini-2.5-pro"
+#       - "gemini-2.5-*"
+#       - "*-preview"
+#       - "*flash*"
+
+
+# =========================================================
+# Codex API Key 配置示例
+# =========================================================
+# codex-api-key:
+#   - api-key: "sk-xxxx"
+#     prefix: "test"
+#     base-url: "https://www.example.com"
+#     headers:
+#       X-Custom-Header: "custom-value"
+#     proxy-url: "socks5://127.0.0.1:7890"
+#     models:
+#       - name: "gpt-5-codex"
+#         alias: "codex-latest"
+#     excluded-models:
+#       - "gpt-5.1"
+#       - "gpt-5-*"
+#       - "*-mini"
+#       - "*codex*"
+
+
+# =========================================================
+# Claude API Key 配置示例
+# =========================================================
+# claude-api-key:
+#   - api-key: "sk-xxxx"
+#   - api-key: "sk-yyyy"
+#     prefix: "test"
+#     base-url: "https://www.example.com"
+#     headers:
+#       X-Custom-Header: "custom-value"
+#     proxy-url: "socks5://127.0.0.1:7890"
+#     models:
+#       - name: "claude-3-5-sonnet-20241022"
+#         alias: "claude-sonnet-latest"
+#     excluded-models:
+#       - "claude-opus-4-5-20251101"
+#       - "claude-3-*"
+#       - "*-thinking"
+#       - "*haiku*"
+
+# Claude 伪装/兼容配置示例
+# cloak:
+#   mode: "auto"       # auto / always / never
+#   strict-mode: false
+#   sensitive-words:
+#     - "API"
+#     - "proxy"
+#   cache-user-id: true
+
+# 默认 Claude 请求头示例
+# claude-header-defaults:
+#   user-agent: "claude-cli/2.1.44 (external, sdk-cli)"
+#   package-version: "0.74.0"
+#   runtime-version: "v24.3.0"
+#   timeout: "600"
+
+# 默认 Codex OAuth 请求头示例
+# codex-header-defaults:
+#   user-agent: "codex_cli_rs/0.114.0 (Mac OS 14.2.0; x86_64) vscode/1.111.0"
+#   beta-features: "multi_agent"
+
+
+# =========================================================
+# OpenAI 兼容供应商示例
+# =========================================================
+# openai-compatibility:
+#   - name: "openrouter"
+#     prefix: "test"
+#     base-url: "https://openrouter.ai/api/v1"
+#     headers:
+#       X-Custom-Header: "custom-value"
+#     api-key-entries:
+#       - api-key: "sk-or-v1-...001"
+#         proxy-url: "socks5://127.0.0.1:7890"
+#       - api-key: "sk-or-v1-...002"
+#     models:
+#       - name: "moonshotai/kimi-k2:free"
+#         alias: "kimi-k2"
+#       - name: "qwen3.5-plus"
+#         alias: "claude-opus-4.66"
+#       - name: "glm-5"
+#         alias: "claude-opus-4.66"
+
+
+# =========================================================
+# Vertex API Key 配置示例
+# =========================================================
+# vertex-api-key:
+#   - api-key: "vk-xxxx"
+#     prefix: "test"
+#     base-url: "https://example.com/api"
+#     proxy-url: "socks5://127.0.0.1:7890"
+#     headers:
+#       X-Custom-Header: "custom-value"
+#     models:
+#       - name: "gemini-2.5-flash"
+#         alias: "vertex-flash"
+#       - name: "gemini-2.5-pro"
+#         alias: "vertex-pro"
+#     excluded-models:
+#       - "imagen-3.0-generate-002"
+#       - "imagen-*"
+
+
+# =========================================================
+# Amp 集成示例
+# =========================================================
+# ampcode:
+#   upstream-url: "https://ampcode.com"
+#   upstream-api-key: ""
+#   restrict-management-to-localhost: false
+#   force-model-mappings: false
+#   model-mappings:
+#     - from: "claude-opus-4-5-20251101"
+#       to: "gemini-claude-opus-4-5-thinking"
