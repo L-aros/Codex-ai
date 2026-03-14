@@ -250,4 +250,4 @@ config.zh-CN.example.yaml
 
 
 ## License
-本项目采用 MIT 许可证授权 - 详情请参阅 (LICENSE)[LICENSE] 文件。
+本项目采用 MIT 许可证授权 - 详情请参阅 [LICENSE](LICENSE) 文件。
